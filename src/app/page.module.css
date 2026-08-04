@@ -1,0 +1,533 @@
+.container {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: #ffffff;
+  min-height: 100vh;
+  color: #161823;
+}
+
+.header {
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.inputCard {
+  border: 1px solid rgba(22, 24, 35, 0.12);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #ffffff;
+}
+
+.tiktokLogoIcon {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.input {
+  border: none;
+  outline: none;
+  flex-grow: 1;
+  font-size: 1rem;
+  color: #161823;
+  background: transparent;
+}
+
+.input::placeholder {
+  color: rgba(22, 24, 35, 0.34);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sectionTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.sectionSubtitle {
+  font-size: 0.8rem;
+  color: #fe2c55;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.coinGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.coinOption {
+  border: 1px solid rgba(22, 24, 35, 0.12);
+  border-radius: 8px;
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 80px;
+}
+
+.coinOption.selected {
+  border-color: #fe2c55;
+  background: rgba(254, 44, 85, 0.04);
+}
+
+.coinAmountWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.goldCoin {
+  width: 18px;
+  height: 18px;
+  background: #FFD700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  border: 1px solid #E6C200;
+}
+
+.coinPrice {
+  font-size: 0.85rem;
+  color: rgba(22, 24, 35, 0.5);
+  margin-top: 0.2rem;
+}
+
+.customText {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.customInputWrapper {
+  margin-top: 0.5rem;
+  border: 1px solid #fe2c55;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  background: rgba(254, 44, 85, 0.04);
+  display: flex;
+  align-items: center;
+}
+
+.customInput {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #161823;
+  text-align: center;
+}
+
+.listCards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.listCard {
+  border: 1px solid rgba(22, 24, 35, 0.12);
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  background: #ffffff;
+  transition: all 0.2s;
+}
+
+.listCard.selected {
+  border-color: #fe2c55;
+  background: rgba(254, 44, 85, 0.04);
+}
+
+.listCardLeft {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.listCardIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: #f8f8f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.listCardText {
+  display: flex;
+  flex-direction: column;
+}
+
+.listCardTitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.listCardSubtitle {
+  font-size: 0.8rem;
+  color: rgba(22, 24, 35, 0.5);
+  margin-top: 0.1rem;
+}
+
+.arrowRight {
+  color: rgba(22, 24, 35, 0.34);
+  font-weight: bold;
+}
+
+.rechargeButton {
+  background: #fe2c55;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: opacity 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.rechargeButton:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.rechargeButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.footerLogo {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footerLogoIcon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Animations */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes checkmark {
+  0% { stroke-dashoffset: 100; opacity: 0; }
+  10% { opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 1; }
+}
+
+.loadingOverlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(254, 44, 85, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+}
+
+/* Success Screen */
+.successContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 1rem;
+  background: #ffffff;
+  min-height: 100vh;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.successIconWrapper {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #00E676;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.successIcon {
+  width: 30px;
+  height: 30px;
+  stroke: #ffffff;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.successTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #161823;
+}
+
+.successSubtitle {
+  font-size: 0.95rem;
+  color: rgba(22, 24, 35, 0.6);
+  line-height: 1.4;
+  margin-bottom: 3rem;
+  max-width: 300px;
+}
+
+.doneButton {
+  background: #fe2c55;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  max-width: 320px;
+  transition: opacity 0.2s;
+  margin-top: auto;
+}
+
+.doneButton:hover {
+  opacity: 0.9;
+}
+
+/* Custom Modal (Bottom Sheet) */
+.modalOverlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 50;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.modalContent {
+  background: #fff;
+  border-radius: 24px 24px 0 0;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  max-height: 95vh;
+  overflow-y: auto;
+  box-shadow: 0 -10px 25px rgba(0,0,0,0.1);
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  display: flex;
+  flex-direction: column;
+}
+
+.modalHeader {
+  display: grid;
+  grid-template-columns: 30px 1fr 30px;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.modalHeaderIcon {
+  font-size: 1.2rem;
+  color: #161823;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.modalTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.modalSubtitleRow {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  font-size: 0.9rem;
+  color: #161823;
+  margin-bottom: 0.5rem;
+}
+
+.modalSubtitleRow svg {
+  width: 12px;
+  height: 12px;
+}
+
+.modalInputBox {
+  border: 1px solid rgba(22, 24, 35, 0.12);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  background: #fff;
+}
+
+.modalInputText {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #161823;
+}
+
+.keyboard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.key {
+  background: #f8f8f8;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #161823;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.1s;
+}
+
+.key:active {
+  background: #e0e0e0;
+}
+
+.keyAction {
+  background: #f1f1f1;
+}
+
+.modalTotalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.modalTotalLabel {
+  color: rgba(22, 24, 35, 0.7);
+}
+
+.modalTotalValue {
+  font-weight: 700;
+  color: #161823;
+}
+
+.modalBtnConfirm {
+  background: #fe2c55;
+  color: #fff;
+  border: none;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  transition: opacity 0.2s;
+}
+
+.modalBtnConfirm:hover {
+  opacity: 0.9;
+}
+
+/* Radio Button */
+.radioCircle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid rgba(22, 24, 35, 0.34);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.radioCircleSelected {
+  border-color: #fe2c55;
+}
+
+.radioInner {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fe2c55;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.2s ease;
+}
+
+.radioCircleSelected .radioInner {
+  opacity: 1;
+  transform: scale(1);
+}
