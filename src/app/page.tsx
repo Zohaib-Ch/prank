@@ -30,7 +30,8 @@ export default function Home() {
   const [tempCustomCoin, setTempCustomCoin] = useState("");
   const [paymentMethod, setPaymentMethod] = useState<"paypal" | "payoneer" | "bank" | null>(null);
   
-  const [isSending, setIsSending] = useState(false);
+  const [isScanning, setIsScanning] = useState(false);
+  const [scanSuccess, setScanSuccess] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [receiptData, setReceiptData] = useState<any>(null);
 
@@ -38,23 +39,29 @@ export default function Home() {
     if (!username || !selectedCoin || !paymentMethod) return;
     if (selectedCoin === "custom" && !customCoin) return;
 
-    setIsSending(true);
+    const coinsAmount = selectedCoin === "custom" ? customCoin : COIN_OPTIONS.find(c => c.id === selectedCoin)?.amount;
+      
+    setReceiptData({
+      username,
+      amount: coinsAmount,
+      method: paymentMethod,
+      transactionId: "TX-" + Math.floor(Math.random() * 1000000000).toString().padStart(9, '0'),
+      date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric' })
+    });
 
-    // Simulate network delay
+    setIsScanning(true);
+    setScanSuccess(false);
+    
+    // Simulate transaction and Face ID delay
     setTimeout(() => {
-      setIsSending(false);
-      setIsSuccess(true);
+      setScanSuccess(true); // Trigger the tick
       
-      const coinsAmount = selectedCoin === "custom" ? customCoin : COIN_OPTIONS.find(c => c.id === selectedCoin)?.amount;
-      
-      setReceiptData({
-        username,
-        amount: coinsAmount,
-        method: paymentMethod,
-        transactionId: "TX-" + Math.floor(Math.random() * 1000000000).toString().padStart(9, '0'),
-        date: new Date().toLocaleString(),
-      });
-    }, 2000);
+      setTimeout(() => {
+        setIsScanning(false);
+        setIsSuccess(true);
+      }, 1200); // Hold the tick for 1.2 seconds before transitioning
+
+    }, 2000); // 2 seconds of scanning
   };
 
   const handleReset = () => {
@@ -65,10 +72,6 @@ export default function Home() {
     setPaymentMethod(null);
     setReceiptData(null);
   };
-
-  const isFormValid = username.trim() !== "" && 
-                      (selectedCoin !== null && (selectedCoin !== "custom" || customCoin.trim() !== "")) && 
-                      paymentMethod !== null;
 
   if (isSuccess && receiptData) {
     return (
@@ -126,7 +129,7 @@ export default function Home() {
               onClick={() => setSelectedCoin(coin.id)}
             >
               <div className={styles.coinAmountWrapper}>
-                <div className={styles.goldCoin}>d</div>
+                <div className={styles.goldCoin}>$</div>
                 <span>{coin.amount}</span>
               </div>
               <div className={styles.coinPrice}>{coin.price}</div>
@@ -144,7 +147,7 @@ export default function Home() {
             {selectedCoin === "custom" && customCoin ? (
               <>
                 <div className={styles.coinAmountWrapper}>
-                  <div className={styles.goldCoin}>d</div>
+                  <div className={styles.goldCoin}>$</div>
                   <span>{customCoin}</span>
                 </div>
                 <div className={styles.coinPrice}>Custom Amount</div>
@@ -208,19 +211,19 @@ export default function Home() {
       </div>
 
       {/* Recharge Button */}
-      <button 
-        className={styles.rechargeButton} 
-        disabled={!isFormValid || isSending}
-        onClick={handleSend}
-      >
-        {isSending ? (
-          <div className={styles.loadingOverlay}>
+      <section className={styles.bottomSection}>
+        <button 
+          className={styles.rechargeButton}
+          onClick={handleSend}
+          disabled={!username || (!selectedCoin && !customCoin) || !paymentMethod || isScanning}
+        >
+          {isScanning ? (
             <div className={styles.spinner}></div>
-          </div>
-        ) : (
-          "Recharge"
-        )}
-      </button>
+          ) : (
+            'Recharge'
+          )}
+        </button>
+      </section>
 
       {/* Footer Logo */}
       <div className={styles.footerLogo}>
@@ -253,7 +256,7 @@ export default function Home() {
             </div>
 
             <div className={styles.modalInputBox}>
-              <div className={styles.goldCoin} style={{ width: '20px', height: '20px', fontSize: '12px' }}>d</div>
+              <div className={styles.goldCoin} style={{ width: '20px', height: '20px', fontSize: '12px' }}>$</div>
               <span className={styles.modalInputText}>{tempCustomCoin || '0'}</span>
             </div>
 
@@ -297,6 +300,39 @@ export default function Home() {
             >
               Recharge
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* Face Scan Modal */}
+      {isScanning && (
+        <div className={styles.faceScanOverlay}>
+          <div className={styles.faceScanModal}>
+            <div className={styles.faceScanIconWrapper}>
+              {scanSuccess ? (
+                <svg className={styles.faceScanIcon} style={{ stroke: '#00E676', strokeWidth: '3' }} viewBox="0 0 24 24" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                  <path className={styles.animatedTick} d="M5 13l4 4L19 7" />
+                </svg>
+              ) : (
+                <>
+                  <svg className={styles.faceScanIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+                    <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+                    <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+                    <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+                    <rect x="8" y="8" width="8" height="8" rx="2" />
+                    <path d="M9 9h.01" />
+                    <path d="M15 9h.01" />
+                    <path d="M9 15h.01" />
+                    <path d="M15 15h.01" />
+                  </svg>
+                  <div className={styles.faceScanLine} />
+                </>
+              )}
+            </div>
+            <div className={styles.faceScanText}>
+              {scanSuccess ? "Authenticated" : "Face ID"}
+            </div>
           </div>
         </div>
       )}
